@@ -8,15 +8,21 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 	@classmethod
-	def get_token(cls, com, n_user, s_id):
-		token = super().get_token(com)
-		token = super().get_token(n_user)
-		token = super().get_token(s_id)
+	def get_token(cls, user):
+				# ,com
+				# ,n_user
+				# ,s_id
+
+		token = super().get_token(user)
+		# token = super().get_token(com)
+		# token = super().get_token(n_user)
+		# token = super().get_token(s_id)
 
 		# Agregar valores personalizados
-		token['company'] = com.name
-		token['network_user'] = n_user.name
-		token['sessionid'] = s_id.name
+		token['username'] = user.username
+		# token['company'] = com.company
+		# token['network_user'] = n_user.network_user
+		# token['sessionid'] = s_id.sessionid
 		# ...
 
 		return token
