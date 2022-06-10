@@ -7,26 +7,26 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, com, n_user, s_id):
-        token = super().get_token(com)
-	  	token = super().get_token(n_user)
-	  	token = super().get_token(s_id)
+	@classmethod
+	def get_token(cls, com, n_user, s_id):
+		token = super().get_token(com)
+		token = super().get_token(n_user)
+		token = super().get_token(s_id)
 
-        # Agregar valores personalizados
-        token['company'] = com.name
-        token['network_user'] = n_user.name
-	  	token['sessionid'] = s_id.name
-        # ...
+		# Agregar valores personalizados
+		token['company'] = com.name
+		token['network_user'] = n_user.name
+		token['sessionid'] = s_id.name
+		# ...
 
-        return token
+		return token
 
 class MyTokenObtainPairView(TokenObtainPairView):
-    serializer_class = MyTokenObtainPairSerializer
+	serializer_class = MyTokenObtainPairSerializer
 
 
 @api_view(['GET'])
-def getRoutes(request) :
+def getRoutes(request):
 	routes = [
 		'/api/token',
 		'/api/token/refresh',
